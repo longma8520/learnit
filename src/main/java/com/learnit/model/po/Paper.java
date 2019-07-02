@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.UUID;
 
@@ -27,6 +28,7 @@ public class Paper {
 
     @Column(name = "career_id")
     @ApiModelProperty(value = "职业ID")
+    @NotBlank(message="职业ID不能为空")
     private UUID careerId;
 
     @Column(name = "title")

@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.UUID;
 
@@ -27,11 +28,16 @@ public class Attachment {
 
     @Column(name = "paper_id")
     @ApiModelProperty(value = "文章ID")
+    @NotBlank(message="文章ID不能为空")
     private UUID paperId;
 
     @Column(name = "access_url")
     @ApiModelProperty(value = "附件地址")
     private String accessUrl;
+
+    @Column(name = "base64")
+    @ApiModelProperty(value = "base64编码")
+    private String base64;
 
     @Column(name = "title")
     @ApiModelProperty(value = "标题")
