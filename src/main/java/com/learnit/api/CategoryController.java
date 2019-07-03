@@ -2,14 +2,18 @@ package com.learnit.api;
 
 import com.learnit.model.po.Career;
 import com.learnit.model.po.Category;
+import com.learnit.model.vo.Result;
+import com.learnit.model.vo.ValidableList;
 import com.learnit.service.CategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,8 +33,20 @@ public class CategoryController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ApiOperation(value = "增加职业分类")
-    public List<Category> addCategories(@Valid @RequestBody List<Category> categories) {
-        return categoryService.addCategories(categories);
+    public Result<List<Category>> addCategories(@RequestBody @Valid ValidableList<Category> categories, BindingResult bindingResult) {
+        /*if(bindingResult.hasErrors()){
+            Result result = new Result();
+            result.setCode(1);
+            result.setMsg(bindingResult.getFieldError().getDefaultMessage());
+            result.setData(null);
+            return result;
+        }*/
+        List<Category> list = categoryService.addCategories(categories);
+        Result result = new Result();
+        result.setCode(0);
+        result.setMsg("成功");
+        result.setData(list);
+        return result;
     }
 
     @RequestMapping(value = "/{category_id}", method = RequestMethod.DELETE)

@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.UUID;
 
@@ -28,7 +29,7 @@ public class Category {
 
     @Column(name = "category_name")
     @ApiModelProperty(value = "分类名称")
-    @NotBlank(message="分类名称不能为空")
+    @NotNull(message="分类名称不能为空")
     private String categoryName;
 
     @Column(name = "category_code")

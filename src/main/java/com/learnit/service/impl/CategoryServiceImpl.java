@@ -18,6 +18,8 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> addCategories(List<Category> categories) {
         //todo 校验分类名称是否存在
         for (Category category : categories) {
+            System.out.print("uuid" + UUID.randomUUID());
+            UUID uuid = UUID.randomUUID();
             category.setCategoryId(UUID.randomUUID());
         }
         categoryRepository.saveAll(categories);
